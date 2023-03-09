@@ -28,6 +28,28 @@ password.send_keys(PASSWORD)
 
 submit_button = driver.find_element(By.ID, "submitBtn")
 submit_button.click()
-
 time.sleep(5)
 
+namelink = driver.find_element(By.ID, "name_link")
+namelink.click()
+time.sleep(3)
+
+member_center =driver.find_element(By.XPATH, "//a[@href='//pda.104.com.tw']")
+member_center.click()
+time.sleep(3)
+
+all_windows = driver.window_handles
+driver.switch_to.window(all_windows[1])
+
+name_element = driver.find_element(By.XPATH, "//div[contains(@class, 'h2 mb-3')]")
+name_element_text = name_element.text.strip()
+if name_element == NAME:
+    print("名字正確")
+else:
+    print("名字錯誤")
+    
+logout_button = driver.find_element(By.XPATH, "//a[@href='//login.104.com.tw/logout']")
+logout_button.click()
+
+time.sleep(5)
+driver.quit()
